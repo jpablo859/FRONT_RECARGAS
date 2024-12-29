@@ -1,0 +1,54 @@
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="card shadow p-5">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <table class="w-100">
+                        <thead>
+                            <tr>
+                                <th>Id vendedor</th>
+                                <th class="d-flex justify-content-end">Nombre vendedor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        placeholder="Ingrese el id" 
+                                        formControlName="sellerId"
+                                        (keypress)="onSearchSeller($event)"
+                                    >
+                                </td>
+                                <td class="d-flex justify-content-end">{{sellerName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label for="operator">Operador</label>
+                <select class="form-control" formControlName="operatorId">
+                    <option 
+                        *ngFor="let item of operators | async" [value]="item.id"
+                    >
+                            {{ item.name }}
+                        </option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="number">Número teléfono</label>
+                <input type="number" class="form-control" formControlName="number">
+            </div>
+            <div class="col-md-3">
+                <label for="number">Valor</label>
+                <input type="number" class="form-control" formControlName="value">
+            </div>
+            <div class="col-md-3 mt-4">
+                <button class="btn btn-primary w-100" [disabled]="!form.valid">Recargar</button>
+            </div>
+        </div>
+        </div>
+    </form>
+  
